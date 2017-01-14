@@ -1,5 +1,6 @@
 package ua.spalah.bank;
 
+import ua.spalah.bank.exceptions.ClientNotFoundException;
 import ua.spalah.bank.exceptions.NotEnoughFundsException;
 import ua.spalah.bank.models.Bank;
 import ua.spalah.bank.models.Client;
@@ -17,7 +18,7 @@ import ua.spalah.bank.services.impl.ClientServiceImpl;
  * Created by Jerald_PC on 08.01.2017.
  */
 public class MainBank {
-    public static void main(String[] args) throws NotEnoughFundsException {
+    public static void main(String[] args) throws NotEnoughFundsException, ClientNotFoundException {
 
 //===================== Создаем банк ======================
         Bank prostoBank = new Bank();
@@ -117,5 +118,13 @@ public class MainBank {
 //--------------------------- Сортируем по имени -----------------------
         System.out.println("After correct\n");
         System.out.println(bankReportService.getClientsSortedByName(prostoBank));
+
+// --------------------------- Тестим исключения -----------------------
+
+        System.out.println("======================== Тестим исключения ============================");
+        clientService.deleteClient(prostoBank,new Client("dd",Gender.FAMALE));
+        System.out.println(clientService.findClientByName(prostoBank, "Kolya"));
+
+
     }
 }

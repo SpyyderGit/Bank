@@ -14,10 +14,12 @@ public class CheckingAccount extends SavingAccount {
 
     @Override
     public AccountType getType() {
+
         return AccountType.CHECKING;
     }
 
     public double getOverdraft() {
+
         return overdraft;
     }
 

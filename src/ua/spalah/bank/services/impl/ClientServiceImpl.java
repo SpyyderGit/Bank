@@ -1,5 +1,6 @@
 package ua.spalah.bank.services.impl;
 
+import ua.spalah.bank.exceptions.ClientNotFoundException;
 import ua.spalah.bank.models.Bank;
 import ua.spalah.bank.models.Client;
 import ua.spalah.bank.services.ClientService;
@@ -12,14 +13,13 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService {
 
     @Override
-    public Client findClientByName(Bank bank, String name) {
-        Client ret = null;
+    public Client findClientByName(Bank bank, String name) throws ClientNotFoundException {
         for (Client c : bank.getAllClients()) {
             if (c.getName().equals(name)) {
-                ret = c;
+                return c;
             }
         }
-        return ret;
+        throw new ClientNotFoundException(name);
     }
 
     @Override
@@ -35,8 +35,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void deleteClient(Bank bank, Client client) {
-
-        bank.getAllClients().remove(client);
+    public void deleteClient(Bank bank, Client client) throws ClientNotFoundException {
+        if (bank.getAllClients().contains(client)) {
+            bank.getAllClients().remove(client);
+        } else {
+            throw new ClientNotFoundException(client.getName());
+        }
     }
 }
