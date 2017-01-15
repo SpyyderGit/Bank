@@ -20,6 +20,8 @@ import ua.spalah.bank.services.impl.ClientServiceImpl;
 public class MainBank {
     public static void main(String[] args) throws NotEnoughFundsException, ClientNotFoundException {
 
+
+
 //===================== Создаем банк ======================
         Bank prostoBank = new Bank();
 
