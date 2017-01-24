@@ -31,7 +31,7 @@ public class MainBank {
     public static void main(String[] args) throws NotEnoughFundsException, ClientNotFoundException {
         MainBank b = new MainBank();
 
-
+        System.out.println("");
         ////===================== Создаем банк ======================
         Bank prostoBank = new Bank();
 
