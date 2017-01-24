@@ -96,6 +96,7 @@ public class MainBank {
         katya.setCity("Dnepr");
 
         System.out.println(bankReportService.getClientByCity(prostoBank));
+        System.out.println("dfdfdf");
 
 
 
